@@ -1,7 +1,7 @@
 from graphene import Schema, ObjectType, String, Mutation, Boolean, Field, Int
 from nautilus.api import ServiceObjectType, Connection
-from nautilus.network import dispatch_action
-from nautilus.conventions import getCRUDAction
+from nautilus.network.amqp import dispatch_action
+from nautilus.conventions import get_crud_action
 from recipeBook.recipe import service as RecipeService
 from recipeBook.ingredient import service as IngredientService
 from recipeBook.ingredientRecipe.server import service as IngredientRecipeService
