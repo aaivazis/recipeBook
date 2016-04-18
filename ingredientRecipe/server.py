@@ -1,7 +1,6 @@
 # third party imports
 from nautilus import ConnectionService
-
-# import the services to connect
+# local imports
 from recipeBook import IngredientService, RecipeService
 
 class ServiceConfig:
@@ -9,4 +8,4 @@ class ServiceConfig:
 
 class IngredientRecipeService(ConnectionService):
     services=[IngredientService, RecipeService]
-    configObject=ServiceConfig
+    config=ServiceConfig

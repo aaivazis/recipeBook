@@ -1,7 +1,5 @@
 # third party imports
 from nautilus import ModelService
-# third party imports
-from sqlalchemy import Column, Text, Integer
 from nautilus.models import BaseModel, fields
 
 class Ingredient(BaseModel):

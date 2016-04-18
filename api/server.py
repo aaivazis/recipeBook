@@ -7,4 +7,3 @@ from schema import schema
 # create a nautilus service with just the schema
 class RecipeBookAPI(APIGateway):
     schema = schema
-

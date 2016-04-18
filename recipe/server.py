@@ -7,10 +7,8 @@ class Recipe(BaseModel):
     category = fields.CharField()
     cook_time = fields.IntegerField()
 
-
 class ServiceConfig:
     database_url = 'sqlite:///recipe.db'
-
 
 class RecipeService(ModelService):
     model = Recipe
