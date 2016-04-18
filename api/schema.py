@@ -1,10 +1,8 @@
 from graphene import Schema, ObjectType, String, Mutation, Boolean, Field, Int
 from nautilus.api import ServiceObjectType, Connection
 from nautilus.network import dispatch_action
-from nautilus.conventions import getCRUDAction
-from recipeBook.recipe import service as RecipeService
-from recipeBook.ingredient import service as IngredientService
-from recipeBook.ingredientRecipe.server import service as IngredientRecipeService
+from nautilus.conventions import get_crud_action
+from recipeBook import RecipeService, IngredientService, IngredientRecipeService
 
 
 class Recipe(ServiceObjectType):
@@ -55,7 +53,7 @@ class AddRecipeMutation(Mutation):
             cook_time=args['cookTime'],
         )
         dispatch_action(
-            action_type=getCRUDAction('create', RecipeService.model),
+            action_type=get_crud_action('create', RecipeService.model),
             payload=payload
         )
         return AddRecipeMutation(success=True)
@@ -82,7 +80,7 @@ class AddIngredientMutation(Mutation):
             name=args['name'],
         )
         dispatch_action(
-            action_type=getCRUDAction('create', IngredientService.model),
+            action_type=get_crud_action('create', IngredientService.model),
             payload=payload
         )
         return AddIngredientMutation(success=True)
@@ -111,7 +109,7 @@ class AddIngredientRecipeMutation(Mutation):
             ingredient=args['ingredient'],
         )
         dispatch_action(
-            action_type=getCRUDAction('create', IngredientRecipeService.model),
+            action_type=get_crud_action('create', IngredientRecipeService.model),
             payload=payload
         )
         return AddIngredientRecipeMutation(success=True)

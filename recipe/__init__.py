@@ -1,1 +1,1 @@
-from .server import service
+from .server import RecipeService

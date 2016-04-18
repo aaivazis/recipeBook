@@ -1,1 +1,1 @@
-from .manage import manager
+from .server import IngredientRecipeService

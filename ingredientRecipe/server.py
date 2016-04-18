@@ -2,16 +2,11 @@
 from nautilus import ConnectionService
 
 # import the services to connect
-from recipeBook.ingredient import service as ingredient_service
-from recipeBook.recipe import service as recipe_service
+from recipeBook import IngredientService, RecipeService
 
 class ServiceConfig:
-    SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/ingredientRecipe.db'
+    database_url = 'sqlite:///ingredientRecipe.db'
 
-service = ConnectionService(
-    configObject=ServiceConfig,
-    services=[
-        ingredient_service,
-        recipe_service,
-    ]
-)
+class IngredientRecipeService(ConnectionService):
+    services=[IngredientService, RecipeService]
+    configObject=ServiceConfig

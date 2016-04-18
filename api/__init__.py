@@ -1,1 +1,1 @@
-from recipeBook.api.server import service
+from .server import RecipeBookAPI
