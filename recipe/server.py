@@ -1,19 +1,17 @@
 # third party imports
 from nautilus import ModelService
-# third party imports
-from sqlalchemy import Column, Text, Integer
-from nautilus.models import HasID, BaseModel, CRUDNotificationCreator
+from nautilus.models import BaseModel, fields
 
-class Recipe(CRUDNotificationCreator, HasID, BaseModel):
-    name = Column(Text)
-    category = Column(Text)
-    cook_time = Column(Integer)
+class Recipe(BaseModel):
+    name = fields.CharField()
+    category = fields.CharField()
+    cook_time = fields.IntegerField()
+
 
 class ServiceConfig:
-    SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/recipe.db'
+    database_url = 'sqlite:///recipe.db'
 
 
-service = ModelService(
-    configObject = ServiceConfig,
-    model = Recipe,
-)
+class RecipeService(ModelService):
+    model = Recipe
+    config = ServiceConfig
