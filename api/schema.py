@@ -2,7 +2,7 @@ from graphene import Schema, ObjectType, String, Mutation, Boolean, Field, Int
 from nautilus.api import ServiceObjectType, Connection
 from nautilus.network import dispatch_action
 from nautilus.conventions import get_crud_action
-from recipeBook import RecipeService, IngredientService, IngredientRecipeService
+from recipe_book import RecipeService, IngredientService, IngredientRecipeService
 
 
 class Recipe(ServiceObjectType):
