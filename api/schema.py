@@ -17,15 +17,9 @@ class Ingredient(ServiceObjectType):
         service = IngredientService
 
 
-class IngredientRecipe(ServiceObjectType):
-    class Meta:
-        service = IngredientRecipeService
-
-
 class Query(ObjectType):
     ingredients = Connection(Ingredient)
     recipes = Connection(Recipe)
-    ingredientrecipes = Connection(IngredientRecipe)
 
 
 class AddRecipeMutation(Mutation):
@@ -86,40 +80,12 @@ class AddIngredientMutation(Mutation):
         return AddIngredientMutation(success=True)
 
 
-class AddIngredientRecipeMutation(Mutation):
-    """
-        This mutation fires an event to connect an ingredient to a recipe in the model service.
-    """
-    class Input:
-        """
-            This class defines the mutation arguments.
-        """
-        ingredient = String()
-        recipe = String()
-
-
-    success = Boolean(description="Whether or not the dispatch was successful")
-
-    @classmethod
-    def mutate(cls, instance, args, info):
-        """ perform the mutation """
-        # send the new ingredientRecipe action into the queue
-        payload = dict(
-            recipe=args['recipe'],
-            ingredient=args['ingredient'],
-        )
-        dispatch_action(
-            action_type=get_crud_action('create', IngredientRecipeService.model),
-            payload=payload
-        )
-        return AddIngredientRecipeMutation(success=True)
 
 
 class ApiMutations(ObjectType):
     """ the list of mutations that the api supports """
     addRecipe = Field(AddRecipeMutation)
     addIngredient = Field(AddIngredientMutation)
-    addIngredientRecipe = Field(AddIngredientRecipeMutation)
 
 
 schema = Schema()
